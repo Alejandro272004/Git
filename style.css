@@ -1,0 +1,511 @@
+/* --- VARIABLES Y RESET --- */
+:root {
+    --color-primary: #6c5ce7;
+    --color-danger: #ff7782;
+    --color-success: #41f1b6;
+    --color-warning: #ffbb55;
+    --color-white: #fff;
+    --color-info-dark: #7d8da1;
+    --color-dark: #363949;
+    --color-light: rgba(132, 139, 200, 0.18);
+    --color-background: #f6f6f9;
+
+    --card-border-radius: 2rem;
+    --border-radius-1: 0.4rem;
+    --border-radius-2: 0.8rem;
+    --border-radius-3: 1.2rem;
+
+    --box-shadow: 0 2rem 3rem var(--color-light);
+}
+
+.dark-theme-variables {
+    --color-background: #181a1e;
+    --color-white: #202528;
+    --color-dark: #edeffd;
+    --color-info-dark: #a3bdcc;
+    --box-shadow: 0 2rem 3rem rgba(0, 0, 0, 0.4);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    outline: 0;
+    appearance: none;
+    border: 0;
+    text-decoration: none;
+    list-style: none;
+    box-sizing: border-box;
+}
+
+body {
+    width: 100vw;
+    height: 100vh;
+    font-family: poppins, sans-serif;
+    font-size: 0.88rem;
+    background: var(--color-background);
+    user-select: none;
+    overflow-x: hidden;
+    color: var(--color-dark);
+}
+
+/* --- LAYOUT GRID --- */
+.layout {
+    display: grid;
+    width: 96%;
+    margin: 0 auto;
+    gap: 1.8rem;
+    grid-template-columns: 14rem auto;
+}
+
+aside {
+    height: 100vh;
+}
+
+aside .logo {
+    display: flex;
+    gap: 0.8rem;
+    margin-top: 1rem;
+}
+
+aside .logo span {
+    color: var(--color-primary);
+}
+
+/* --- SIDEBAR --- */
+aside .sidebar {
+    display: flex;
+    flex-direction: column;
+    height: 86vh;
+    position: relative;
+    top: 3rem;
+}
+
+aside h3 { font-weight: 500; }
+
+aside .sidebar a {
+    display: flex;
+    color: var(--color-info-dark);
+    margin-left: 2rem;
+    gap: 1rem;
+    align-items: center;
+    position: relative;
+    height: 3.7rem;
+    transition: all 300ms ease;
+}
+
+aside .sidebar a.active {
+    background: var(--color-light);
+    color: var(--color-primary);
+    margin-left: 0;
+}
+
+aside .sidebar a.active:before {
+    content: "";
+    width: 6px;
+    height: 100%;
+    background: var(--color-primary);
+}
+
+/* --- MAIN / HEADER --- */
+main {
+    margin-top: 1.4rem;
+}
+
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: relative; /* Para centrar métricas */
+}
+
+.search-bar {
+    background: var(--color-white);
+    display: flex;
+    align-items: center;
+    padding: 0.6rem 1rem;
+    border-radius: var(--border-radius-2);
+}
+
+.search-bar input {
+    background: transparent;
+    color: var(--color-dark);
+    margin-left: 0.5rem;
+}
+
+/* MÉTRICAS SUPERIORES CENTRADAS */
+.header-metrics {
+    display: flex;
+    gap: 2rem;
+    background: var(--color-white);
+    padding: 0.8rem 1.6rem;
+    border-radius: var(--border-radius-3);
+    box-shadow: var(--box-shadow);
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.user-profile {
+    display: flex;
+    gap: 2rem;
+    align-items: center;
+}
+
+.theme-toggler {
+    background: var(--color-light);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 1.6rem;
+    width: 4.2rem;
+    cursor: pointer;
+    border-radius: var(--border-radius-1);
+}
+
+.theme-toggler span {
+    font-size: 1.2rem;
+    width: 50%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.theme-toggler span.active {
+    background: var(--color-primary);
+    color: white;
+    border-radius: var(--border-radius-1);
+}
+
+.profile-photo {
+    width: 2.8rem;
+    height: 2.8rem;
+    border-radius: 50%;
+    overflow: hidden;
+}
+
+/* --- TARJETAS (INSIGHTS) --- */
+.insights {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.6rem;
+    margin-top: 1rem;
+}
+
+.insights > div {
+    background: var(--color-white);
+    padding: 1.5rem;
+    border-radius: var(--card-border-radius);
+    margin-top: 1rem;
+    box-shadow: var(--box-shadow);
+    transition: all 300ms ease;
+}
+
+.insights > div:hover {
+    box-shadow: none;
+}
+
+.insights > div .middle {
+    display: flex;
+    align-items: center;
+    justify-content: space-between; /* Mantiene números dentro */
+}
+
+.insights h3 { margin: 1rem 0 0.6rem; font-size: 1rem; }
+
+/* PROGRESO CIRCULAR */
+.insights .progress {
+    position: relative;
+    width: 92px;
+    height: 92px;
+    border-radius: 50%;
+}
+
+.insights svg {
+    width: 7rem;
+    height: 7rem;
+}
+
+.insights svg circle {
+    fill: none;
+    stroke: var(--color-primary);
+    stroke-width: 14;
+    stroke-linecap: round;
+    transform: translate(5px, 5px);
+    stroke-dasharray: 110;
+    stroke-dashoffset: 30;
+}
+
+.insights .progress .number {
+    position: absolute;
+    top: 0; left: 0;
+    height: 100%; width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* --- TABLA --- */
+.recent-orders {
+    margin-top: 2rem;
+}
+
+.recent-orders table {
+    background: var(--color-white);
+    width: 100%;
+    border-radius: var(--card-border-radius);
+    padding: 1.5rem;
+    text-align: center;
+    box-shadow: var(--box-shadow);
+}
+
+table tbody td {
+    height: 3.5rem;
+    border-bottom: 1px solid var(--color-light);
+    color: var(--color-info-dark);
+}
+
+table tbody tr:last-child td { border: none; }
+
+.danger { color: var(--color-danger); }
+.success { color: var(--color-success); }
+.primary { color: var(--color-primary); }
+.insights svg circle {
+    fill: none;
+    stroke: var(--color-primary);
+    stroke-width: 14;
+    stroke-linecap: round;
+    transform: translate(5px, 5px);
+    /* El valor total del perímetro es aproximadamente 226 para un radio de 36 */
+    stroke-dasharray: 226;
+    stroke-dashoffset: 226; /* Empieza vacío */
+    transition: stroke-dashoffset 1s ease-in-out; /* Animación suave */
+}
+/* Ajuste opcional para tarjetas sin gráfico circular */
+.card .middle {
+    display: flex;
+    align-items: center;
+    /* Al no haber gráfico, podemos dejar que el texto respire */
+    justify-content: flex-start;
+}
+
+.card .left h1 {
+    font-size: 2.2rem; /* Hacemos el número un poco más grande para llenar el espacio */
+    margin-top: 0.5rem;
+}
+.insights {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); /* Tres columnas iguales: Usuarios | Gráfico | CPU */
+    gap: 1.6rem;
+}
+
+/* Para que la tarjeta de usuarios se vea bien sin el círculo */
+.card .middle {
+    display: flex;
+    align-items: center;
+    min-height: 80px; /* Le damos una altura mínima para que no se vea "aplastada" */
+}
+.card {
+    overflow: hidden; /* Corta cualquier contenido que intente salirse de la caja */
+    position: relative;
+}
+
+/* Ocultar específicamente porcentajes sueltos que no estén en el círculo */
+.card > p,
+.card > small {
+    display: none;
+}
+/* Esto asegura que el contenido extra no se vea si hay errores de etiquetas */
+main.body {
+    overflow-y: auto;
+    max-height: 100vh;
+}
+
+.insights .card {
+    position: relative;
+    overflow: hidden; /* Corta cualquier cosa que intente salirse */
+}
+/* Esto ocultará cualquier texto que se haya quedado volando fuera de las cajas */
+.insights {
+    overflow: visible;
+}
+
+/* Evita que el body sea más largo de lo necesario */
+.layout {
+    height: 100vh;
+    overflow: hidden;
+}
+
+main.body {
+    overflow-y: auto;
+    padding-bottom: 2rem;
+}
+/* Ajuste del Layout para que el contenido ocupe todo el ancho */
+/* --- AJUSTE DEL LAYOUT --- */
+.layout {
+    display: block; /* Cambiamos grid por block para que el main ocupe todo */
+    width: 96%;
+    margin: 0 auto;
+}
+
+/* --- EL MENÚ HAMBURGUESA (ASIDE) --- */
+aside {
+    position: fixed; /* Esto hace que flote */
+    left: -100%;    /* Lo escondemos a la izquierda */
+    top: 0;
+    width: 18rem;
+    height: 100vh;
+    background: var(--color-white);
+    z-index: 1000;  /* Por encima de todo */
+    box-shadow: 1rem 3rem 4rem var(--color-light);
+    transition: all 400ms ease;
+    padding: 1.2rem;
+}
+
+/* Esta clase es la que activará el JS */
+aside.show-menu {
+    left: 0;
+}
+
+/* Ajuste de las 3 opciones para que se vean bien */
+aside nav {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    margin-top: 2rem;
+}
+
+aside nav a {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    height: 4rem;
+    padding-left: 1.5rem;
+    border-radius: var(--border-radius-2);
+    color: var(--color-info-dark);
+    transition: all 300ms ease;
+}
+
+aside nav a.active {
+    background: var(--color-light);
+    color: var(--color-primary);
+}
+
+/* --- BOTÓN DE CIERRE (X) --- */
+aside .close {
+    display: flex;
+    justify-content: flex-end;
+    cursor: pointer;
+    color: var(--color-dark);
+}
+
+/* --- BOTÓN MENÚ (HAMBURGUESA) --- */
+.menu-btn {
+    display: flex;
+    cursor: pointer;
+    font-size: 2rem;
+    margin-right: 1rem;
+}
+/* El botón debe estar siempre visible en la esquina superior izquierda */
+.menu-btn {
+    position: fixed;
+    top: 1.4rem;
+    left: 1.4rem;
+    z-index: 99;
+    cursor: pointer;
+    background: var(--color-white);
+    padding: 0.5rem;
+    border-radius: var(--border-radius-1);
+    box-shadow: var(--box-shadow);
+}
+
+/* El main ahora debe tener un margen para que el botón no tape el título */
+main.body {
+    margin-top: 1.4rem;
+    padding-left: 4rem; /* Espacio para el botón de menú */
+}
+
+/* El menú lateral flotante */
+aside {
+    position: fixed;
+    left: -100%; /* Escondido */
+    top: 0;
+    width: 18rem;
+    height: 100vh;
+    background: var(--color-white);
+    z-index: 1000;
+    transition: all 400ms ease;
+    padding: 1.2rem;
+}
+
+aside.show-menu {
+    left: 0;
+}
+.chart-container {
+    padding: 1rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+#traffic-chart {
+    width: 100%;
+    margin-top: 1rem;
+}
+#traffic-chart {
+    width: 100%;
+    margin-top: 1rem;
+    min-height: 150px;
+    /* Evita que los bordes de la animación causen scroll */
+    overflow: hidden;
+}
+.progress svg circle {
+    fill: none;
+    stroke: var(--color-primary); /* Morado */
+    stroke-width: 14;
+    stroke-linecap: round;
+    stroke-dasharray: 226;
+    stroke-dashoffset: 226;
+    transition: all 1s ease; /* Movimiento suave */
+}
+
+/* Círculo de fondo (opcional para que se vea el camino gris) */
+.progress svg {
+    background: transparent;
+    border-radius: 50%;
+}
+.progress svg circle {
+    fill: none;
+    stroke: var(--color-primary);
+    stroke-width: 14;
+    stroke-linecap: round;
+    /* Cambiamos el valor base a 110 para mayor precisión */
+    stroke-dasharray: 110;
+    stroke-dashoffset: 110;
+    /* Esto centra el inicio del trazo arriba en el medio */
+    transform: rotate(-90deg);
+    transform-origin: center;
+    transition: all 1s ease;
+}
+
+/* Añade un círculo de fondo gris oscuro para que el "hueco" sea circular */
+.progress svg circle.background {
+    stroke: var(--color-light); /* Un gris suave o color de fondo de la tarjeta */
+    stroke-dashoffset: 0;
+}
+.progress svg circle {
+    /* El valor 226 es para un r=36 (2 * PI * 36) */
+    stroke-dasharray: 226;
+    stroke-dashoffset: 226;
+    stroke-linecap: round; /* Hace las puntas redondas */
+    stroke: var(--color-primary);
+    transform: rotate(-90deg); /* Empieza en las 12 en punto */
+    transform-origin: center;
+    transition: all 1s ease;
+}
+
+.progress svg circle.background {
+    stroke-dashoffset: 0;
+    stroke: var(--color-light); /* Color gris de fondo */
+    opacity: 0.3;
+}
